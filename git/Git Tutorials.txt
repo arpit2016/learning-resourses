@@ -1,0 +1,115 @@
+Git Tutorials
+
+Command Line: The computer program we use to input Git commands. On a Mac, it’s called Terminal. On a PC, it’s a non-native program that you download when you download Git for the first time (we’ll do that in the next section). In both cases, you type text-based commands, known as prompts, into the screen, instead of using a mouse.
+
+Repository: A directory or storage space where your projects can live. Sometimes GitHub users shorten this to “repo.” It can be local to a folder on your computer, or it can be a storage space on GitHub or another online host. You can keep code files, text files, image files, you name it, inside a repository.
+
+Version Control: Basically, the purpose Git was designed to serve. When you have a Microsoft Word file, you either overwrite every saved file with a new save, or you save multiple versions. With Git, you don’t have to. It keeps “snapshots” of every point in time in the project’s history, so you can never lose or overwrite it.
+
+Commit: This is the command that gives Git its power. When you commit, you are taking a “snapshot” of your repository at that point in time, giving you a checkpoint to which you can reevaluate or restore your project to any previous state.
+
+Branch: How do multiple people work on a project at the same time without Git getting them confused? Usually, they “branch off” of the main project with their own versions full of changes they themselves have made. After they’re done, it’s time to “merge” that branch back with the “master,” the main directory of the project.
+
+Git-Specific Commands
+
+git init: Initializes a new Git repository. Until you run this command inside a repository or directory, it’s just a regular folder. Only after you input this does it accept further Git commands.
+
+git config: Short for “configure,” this is most useful when you’re setting up Git for the first time.
+
+git help: Forgot a command? Type this into the command line to bring up the 21 most common git commands. You can also be more specific and type “git help i4nit” or another term to figure out how to use and configure a specific git command.
+
+git status: Check the status of your repository. See which files are inside it, which changes still need to be committed, and which branch of the repository you’re currently working on.
+
+git add: This does not add new files to your repository. Instead, it brings new files to Git’s attention. After you add files, they’re included in Git’s “snapshots” of the repository.
+
+git commit: Git’s most important command. After you make any sort of change, you input this in order to take a “snapshot” of the repository. Usually it goes git commit -m “Message here.” The -m indicates that the following section of the command should be read as a message.
+
+git branch: Working with multiple collaborators and want to make changes on your own? This command will let you build a new branch, or timeline of commits, of changes and file additions that are completely your own. Your title goes after the command. If you wanted a new branch called “cats,” you’d type git branch cats.
+
+git checkout: Literally allows you to “check out” a repository that you are not currently inside. This is a navigational command that lets you move to the repository you want to check. You can use this command as git checkout master to look at the master branch, or git checkout cats to look at another branch.
+
+git merge: When you’re done working on a branch, you can merge your changes back to the master branch, which is visible to all collaborators. git merge cats would take all the changes you made to the “cats” branch and add them to the master.
+
+git push: If you’re working on your local computer, and want your commits to be visible online on GitHub as well, you “push” the changes up to GitHub with this command.
+
+git pull: If you’re working on your local computer and want the most up-to-date version of your repository to work with, you “pull” the changes down from GitHub with this command.
+
+Setting Up GitHub And Git For The First Time
+
+It’s time to introduce yourself to Git. Type in the following code:
+git config --global user.name "Your Name Here"
+
+Next, tell it your email and make sure it’s the same email you used when you signed up for a GitHub.com account just a moment ago. Do it like this:
+git config --global user.email "your_email@youremail.com"
+
+Now we’re finally using a Git command. For your next line, type:
+git init
+
+When we type this code in, it tells the computer to recognize this directory as a local Git repository.
+Create a new readme file. You can clearly see your new Readme file. But can Git? Let’s find out. Type:
+
+git status
+
+Readme.txt is listed as an “untracked” file, which means Git is ignoring it for now. To make Git notice that the file is there, type:
+git add Readme.txt
+
+Notice how the command line gave you a hint there? All right, we’ve added our first file, so it’s time to take a “snapshot” of the project so far, or “commit” it:
+git commit -m “Add Readme.txt”
+
+Connect Your Local Repository To Your GitHub Repository
+
+Assume that we have a GitHub repo called “MyProject” located at https://github.com/username/myproject.git. Of course, username should be replaced with whatever your GitHub username actually is, and myproject should be replaced with the actual title you named your first GitHub repository.
+
+git remote add origin https://github.com/username/myproject.git
+
+The first part is familiar; we’ve used git add already with files. We’ve tacked the word origin onto it to indicate a new place from which files will originate. remote is a descriptor of origin, to indicate the origin is not on the computer, but somewhere online.
+
+Git now knows there’s a remote repository and it’s where you want your local repository changes to go. To confirm, type this to check:
+
+git remote -v
+
+Now we want to upload, or “push,” our changes up to the GitHub remote repo. That’s easy. Just type:
+
+git push
+The command line will chug through several lines on its own, and the final word it spits out will most likely be “everything up-to-date.”
+
+Git’s giving me a bunch of warnings here since I just did the simple command. If I wanted to be more specific, I could have typed git push origin master, to specify that I meant the master branch of my repository. I didn’t do that because I only have one branch right now.
+
+Basic Branching and Merging
+Let’s go through a simple example of branching and merging with a workflow that you might use in the real world. You’ll follow these steps:
+
+Do work on a website.
+Create a branch for a new story you’re working on.
+Do some work in that branch.
+
+At this stage, you’ll receive a call that another issue is critical and you need a hotfix. You’ll do the following:
+
+Switch to your production branch.
+Create a branch to add the hotfix.
+After it’s tested, merge the hotfix branch, and push to production.
+Switch back to your original story and continue working.
+
+Basic Branching
+
+git checkout -b iss53
+Switched to a new branch "iss53"
+
+vim index.html
+$ git commit -a -m 'added a new footer [issue 53]'
+
+git checkout master
+Switched to branch 'master'
+
+$ git branch -d hotfix
+Deleted branch hotfix (3a0874c).
+
+Basic Merging
+Suppose you’ve decided that your issue #53 work is complete and ready to be merged into your master branch. In order to do that, you’ll merge your iss53 branch into master, much like you merged your hotfix branch earlier. All you have to do is check out the branch you wish to merge into and then run the git merge command:
+
+
+$ git checkout master
+Switched to branch 'master'
+$ git merge iss53
+Merge made by the 'recursive' strategy.
+index.html |    1 +
+1 file changed, 1 insertion(+)

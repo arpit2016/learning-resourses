@@ -1,0 +1,23 @@
+Useful Windows cmd Commands
+
+1. Change directory :-  cd desktop/myfolder
+2. Back in directory :- cd..
+3. Change volume :- d:
+4. Go to root drive :- cd/
+5. Change to folder in another drive :- cd /d D:/mytutorials/php
+6. View the content of folder :- dir
+7. Make new folder :- mkdir myfolder or md myfolder
+8. To create a new folder having spaces between them :- Use the name inside quotes("")
+9. Copy files and folders :- copy myfile.txt myfolder/mynewfile.txt
+10. To copy folder: xcopy /s /i myfolder mynewfolder
+(/s is for sub directories and /i is for creating a new directory if it does not exist )
+11. Delete files and folder : del myfile.txt
+( for deleting hidden items use del /h myfile.txt)
+12. DEL *.DOC - delete all files with the DOC extension (you can use any file extension necessary, DOC is just an example);
+    DEL Test*.* - delete all files beginning with Test;
+    DEL *.* - delete ALL files from the current folder.
+13. To launch an application or file just go to the directory and type its name with extension and press enter
+14. For getting any help for unknown command :- help cd
+15. For removing any folder :- rd myfolder
+( for deleteing subdirectories and files use rd /s and for deleting without confirmation use rd /s /q myfolder )
+
