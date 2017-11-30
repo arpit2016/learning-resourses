@@ -1,0 +1,49 @@
+Heroku Tutorials 
+
+Hosting a static website
+
+* first of all I want to tell you that heroku only hosts apps built on above mentioned programming language, not static websites. Here in this tutorial I will show you the trick that will make heroku understand that your static website is a PHP app just by using a single php file to do the trick. 
+
+* Install heroku and git for your operating system
+
+* First of all create a repository 
+* Do git add and git commit on it 
+* push the code online using github and git remote add origin http://njnsdf.nds and git push -u origin master
+
+* After that login to heroku from local system
+* heroku login
+
+* To make heroku know that our code is php we have to make a composer file
+* touch Composer.json
+
+* Then open the composer.json and type {} and save it
+
+* The make a index.php file
+* touch index.php
+
+* Then open the index.php in text editor and make a redirect call to index.html file
+
+Code :- 
+
+<?php
+header('Location: index.html');
+?>
+
+* Then use git add . and git commit to commit all the changes
+* Push the code online using git remote add origin and git push
+
+* Create a heroku app using 
+* heroku create “your app name without quotes”
+ 
+* Then push the code to the repository of heroku
+* git push heroku master
+
+* Then make the server running 
+* heroku ps:scale web=1
+
+* We can open the website using 
+* heroku open
+
+
+
+
